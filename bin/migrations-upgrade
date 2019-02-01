@@ -1,0 +1,7 @@
+#!/bin/bash
+DIR=$(readlink -f "$0")
+VENDOR="$(dirname "$DIR")/../../../"
+
+"$VENDOR"/bin/rector process "$@" --config "$VENDOR"/sserbin/doctrine-migrations2-upgrade/rector.yml
+exit $?
+
