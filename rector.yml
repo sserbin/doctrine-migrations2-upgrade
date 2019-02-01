@@ -1,0 +1,4 @@
+services:
+    Sserbin\DoctrineMigrations2Upgrade\MigrationClassRenameRector: ~
+    Sserbin\DoctrineMigrations2Upgrade\MigrationNamespaceChangeRector: ~
+    Sserbin\DoctrineMigrations2Upgrade\MigrationSignatureRector: ~
