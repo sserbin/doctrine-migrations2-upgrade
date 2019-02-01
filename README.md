@@ -7,7 +7,7 @@ This package aims to automate upgrading from 1.x to 2.0 by doing automatic code 
 The following bc breaks are covered:
 - exception class renames
 - main namespace rename
-- `up()` and `down()` return signature change
+- migration return signature fix (for `up()`, `down()`, `preUp()`, `postUp()`, `preDown()`, `postDown()`, `getDescription()`, `isTransactional()`)
 
 # Installation
 ```

@@ -11,6 +11,17 @@ use Rector\RectorDefinition\RectorDefinition;
 
 class MigrationSignatureRector extends AbstractRector
 {
+    private const REPLACEMENTS_MAP = [
+        'up' => 'void',
+        'down' => 'void',
+        'preUp' => 'void',
+        'postUp' => 'void',
+        'preDown' => 'void',
+        'postDown' => 'void',
+        'getDescription' => 'string',
+        'isTransactional' => 'bool',
+    ];
+
     public function getDefinition(): RectorDefinition
     {
         return new RectorDefinition(
@@ -61,8 +72,15 @@ CODE_SAMPLE
     {
         assert($node instanceof ClassMethod);
 
-        if (in_array($this->getName($node), ['up', 'down'])) {
-            $node->returnType = new Identifier('void');
+        foreach (self::REPLACEMENTS_MAP as $method => $type) {
+            if (!$this->isName($node, $method)) {
+                continue;
+            }
+            if ($node->returnType === $type) {
+                return null; // already set, skip
+            }
+
+            $node->returnType = new Identifier($type);
         }
 
         return null;
