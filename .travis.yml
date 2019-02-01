@@ -7,6 +7,9 @@ cache:
     - $HOME/.composer/cache
     - vendor
 
+before_install:
+  - phpenv config-rm xdebug.ini || true
+
 php:
   - 7.1
   - 7.2
@@ -22,3 +25,16 @@ script:
   - composer cs-check
   - composer static-analysis
   - composer test
+
+jobs:
+    include:
+        - stage: Coverage
+          env: COVERAGE
+          before_script:
+            - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{.disabled,}
+            - if [[ ! $(php -m | grep -si xdebug) ]]; then echo "xdebug required for coverage"; exit 1; fi
+          script:
+            - ./vendor/bin/phpunit --coverage-clover clover.xml
+          after_script:
+            - wget https://scrutinizer-ci.com/ocular.phar
+            - php ocular.phar code-coverage:upload --format=php-clover clover.xml
