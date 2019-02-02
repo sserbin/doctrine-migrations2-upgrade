@@ -4,6 +4,7 @@ namespace Sserbin\DoctrineMigrations2Upgrade;
 
 use PhpParser\Node;
 use PhpParser\Node\Identifier;
+use PhpParser\Node\NullableType;
 use PhpParser\Node\Stmt\ClassMethod;
 use Rector\Rector\AbstractRector;
 use Rector\RectorDefinition\CodeSample;
@@ -76,7 +77,11 @@ CODE_SAMPLE
             if (!$this->isName($node, $method)) {
                 continue;
             }
-            if ($node->returnType === $type) {
+
+            if ($node->returnType !== null
+                && !$node->returnType instanceof NullableType
+                && $node->returnType->toString() === $type
+            ) {
                 return null; // already set, skip
             }
 
