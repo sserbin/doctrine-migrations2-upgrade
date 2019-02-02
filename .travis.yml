@@ -8,6 +8,7 @@ cache:
     - vendor
 
 before_install:
+  - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{,.disabled} || echo "xdebug not available"
   - phpenv config-rm xdebug.ini || true
 
 php:
@@ -31,7 +32,7 @@ jobs:
         - stage: Coverage
           env: COVERAGE
           before_script:
-            - phpenv config-add xdebug.ini
+            - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{.disabled,}
             - if [[ ! $(php -m | grep -si xdebug) ]]; then echo "xdebug required for coverage"; exit 1; fi
           script:
             - ./vendor/bin/phpunit --coverage-clover clover.xml
