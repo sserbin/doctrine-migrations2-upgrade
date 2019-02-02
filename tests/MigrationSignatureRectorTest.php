@@ -11,6 +11,7 @@ final class MigrationSignatureRectorTest extends AbstractRectorTestCase
     {
         $this->doTestFiles([
             __DIR__ . '/Fixture/signatureChange.php.inc',
+            __DIR__ . '/Fixture/v2MigrationIsUnchanged.php.inc',
         ]);
     }
 

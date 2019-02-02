@@ -11,6 +11,7 @@ final class MigrationNamespaceChangeRectorTest extends AbstractRectorTestCase
     {
         $this->doTestFiles([
             __DIR__ . '/Fixture/namespaceChange.php.inc',
+            __DIR__ . '/Fixture/v2MigrationIsUnchanged.php.inc',
         ]);
     }
 

@@ -11,6 +11,7 @@ final class MigrationClassRenameRectorTest extends AbstractRectorTestCase
     {
         $this->doTestFiles([
             __DIR__ . '/Fixture/classRenames.php.inc',
+            __DIR__ . '/Fixture/v2MigrationIsUnchanged.php.inc',
         ]);
     }
 
