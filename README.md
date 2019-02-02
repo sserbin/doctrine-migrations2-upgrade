@@ -20,7 +20,7 @@ composer global require sserbin/doctrine-migrations2-upgrade
 
 # Usage
 ```
-vendor/bin/rector process path/to/migrations --dry-run
+vendor/bin/migrations-upgrade path/to/migrations --dry-run
 # or if installed globally (assuming global composer is in $PATH)
 migrations-upgrade path/to/migrations --dry-run
 ```

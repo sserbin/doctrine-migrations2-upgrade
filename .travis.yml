@@ -31,7 +31,7 @@ jobs:
         - stage: Coverage
           env: COVERAGE
           before_script:
-            - phpenv config-rm xdebug.ini
+            - phpenv config-add xdebug.ini
             - if [[ ! $(php -m | grep -si xdebug) ]]; then echo "xdebug required for coverage"; exit 1; fi
           script:
             - ./vendor/bin/phpunit --coverage-clover clover.xml
