@@ -17,7 +17,7 @@
     },
     "require": {
         "php": "~7.1",
-        "doctrine/migrations": "^1.8.1",
+        "doctrine/migrations": "^2.1.2",
         "rector/rector": "^0.3.38"
     },
     "require-dev": {
